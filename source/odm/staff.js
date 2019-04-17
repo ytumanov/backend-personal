@@ -30,4 +30,4 @@ const schema = new mongoose.Schema(
 );
 
 // Collection
-export const users = mongoose.model('users', schema);
+export const users = mongoose.model('staff', schema);

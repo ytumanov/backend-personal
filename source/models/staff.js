@@ -2,9 +2,9 @@
 import bcrypt from 'bcrypt';
 
 // Instruments
-import { users } from '../odm';
+import { staff } from '../odm';
 
-export class Users {
+export class Staff {
     constructor(data) {
         this.data = data;
     }
@@ -13,14 +13,14 @@ export class Users {
         const { email, password } = this.data;
         const hashedPassword = await bcrypt.hash(password, 11);
 
-        await users.create({ email, password: hashedPassword });
+        const { hash } = await staff.create({ email, password: hashedPassword });
 
-        return true;
+        return hash;
     }
 
     async login() {
         const { email, password } = this.data;
-        const { hash, password: userPassword } = await users
+        const { hash, password: userPassword } = await staff
             .findOne({ email })
             .select('password hash')
             .lean();

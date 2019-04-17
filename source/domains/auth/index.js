@@ -28,18 +28,3 @@ export const post = async (req, res) => {
         res.status(401).json({ message: error.message });
     }
 };
-
-export const register = async (req, res) => {
-    debug(`${req.method} — ${req.originalUrl}`);
-
-    try {
-        const { email, password } = req.body;
-        const staff = new Staff({ email, password });
-
-        const data = await staff.register();
-
-        res.status(201).json({ data });
-    } catch (error) {
-        res.status(401).json({ message: error.message });
-    }
-};

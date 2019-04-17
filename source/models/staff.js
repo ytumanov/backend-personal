@@ -9,15 +9,6 @@ export class Staff {
         this.data = data;
     }
 
-    async register() {
-        const { email, password } = this.data;
-        const hashedPassword = await bcrypt.hash(password, 11);
-
-        const { hash } = await staff.create({ email, password: hashedPassword });
-
-        return hash;
-    }
-
     async login() {
         const { email, password } = this.data;
         const { hash, password: userPassword } = await staff

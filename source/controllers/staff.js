@@ -7,12 +7,6 @@ export class Staff {
         };
     }
 
-    async register() {
-        const data = await this.models.staff.register();
-
-        return data;
-    }
-
     async login() {
         const data = await this.models.staff.login();
 

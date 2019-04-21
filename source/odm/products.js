@@ -17,9 +17,14 @@ const schema = new mongoose.Schema({
     price:       {
         type:     Number,
         required: true,
+        min:      0,
     },
-    discount: Number,
-    total:    {
+    discount: {
+        type: Number,
+        min:  0,
+        max:  50,
+    },
+    total: {
         type:     Number,
         required: true,
     },

@@ -15,7 +15,7 @@ const schema = new mongoose.Schema({
 schema.index({ 'name.first': 'text', 'name.last': 'text', city: 'text', country: 'text' });
 
 // model
-export const customer = parents.discriminator(
-    'customer',
+export const customers = parents.discriminator(
+    'customers',
     schema,
 );

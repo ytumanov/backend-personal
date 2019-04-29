@@ -1,14 +1,9 @@
 // Core
 import mongoose from 'mongoose';
+import {hashPlugin} from '../helpers/plugins/hash';
 
 // Document shape
 const schema = new mongoose.Schema({
-    hash: {
-        type:     String,
-        required: true,
-        unique:   true,
-        index:    true,
-    },
     title: {
         type:     String,
         required: true,
@@ -34,6 +29,8 @@ const schema = new mongoose.Schema({
         updatedAt: 'modified',
     },
 });
+
+mongoose.plugin(hashPlugin);
 
 
 // Collection

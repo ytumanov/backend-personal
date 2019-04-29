@@ -11,8 +11,16 @@ export class Staff {
 
     async login() {
         const { email, password } = this.data;
+
+        const res = await staff
+            .findOne({ 'emails.email': email });
+        
+        if (res === null) {
+            return null;
+        }
+
         const { hash, password: userPassword } = await staff
-            .findOne({ email })
+            .findOne({ 'emails.email': email })
             .select('password hash')
             .lean();
 
@@ -23,5 +31,20 @@ export class Staff {
         }
 
         return hash;
+    }
+
+    async find() {
+        const data = await staff.find().lean();
+
+        return data;
+    }
+
+    async create() {
+        const st = {
+            ...this.data,
+        };
+        const data = await staff.create(st);
+
+        return data;
     }
 }

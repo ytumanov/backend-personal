@@ -2,7 +2,8 @@
 import express from 'express';
 
 // Instruments
-import { authenticate } from '../../helpers';
+import { authenticateCustomer } from '../../helpers';
+import { authenticateStaff } from '../../helpers';
 
 const route = express.Router();
 
@@ -10,11 +11,11 @@ const route = express.Router();
 import * as customers from './';
 import * as customerHash from './customer';
 
-route.get('/', [ authenticate ], customers.get);
+route.get('/', [ authenticateStaff ], customers.get);
 route.post('/', customers.post);
 
-route.get('/:hash', [ authenticate ], customerHash.get);
-route.put('/:hash', [ authenticate ], customerHash.put);
-route.delete('/:hash', [ authenticate ], customerHash.remove);
+route.get('/:hash', [ authenticateCustomer ], customerHash.get);
+route.put('/:hash', [ authenticateCustomer ], customerHash.put);
+route.delete('/:hash', [ authenticateCustomer ], customerHash.remove);
 
 export { route as customers };

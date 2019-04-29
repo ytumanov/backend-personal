@@ -1,6 +1,7 @@
 // Core
 import mongoose from 'mongoose';
 import { customers, products } from './';
+import {hashPlugin} from '../helpers/plugins/hash';
 
 // Document shape
 
@@ -38,6 +39,8 @@ const schema = new mongoose.Schema({
         updatedAt: 'modified',
     },
 });
+
+mongoose.plugin(hashPlugin);
 
 // Collection
 export const orders = mongoose.model('orders', schema);

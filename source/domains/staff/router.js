@@ -2,14 +2,14 @@
 import express from 'express';
 
 // Instruments
-import { authenticate } from '../../helpers';
+import { authenticateStaff } from '../../helpers';
 
 const route = express.Router();
 
 // Handlers
 import * as staff from './';
 
-route.get('/', [ authenticate ], staff.get);
+route.get('/', [ authenticateStaff ], staff.get);
 route.post('/', staff.post);
 
 export { route as staff };
